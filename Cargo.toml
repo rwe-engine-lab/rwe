@@ -1,0 +1,97 @@
+[package]
+name = "rwe"
+version = "0.1.0"
+edition = "2024"
+default-run = "rwe"
+autoexamples = false
+rust-version = "1.85"
+description = "Experimental Rust application framework with HTML/CSS rendering and optional JavaScript and native windows"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/rwe-engine/rwe"
+documentation = "https://docs.rs/rwe"
+keywords = ["web", "rendering", "css", "graphics"]
+categories = ["graphics", "rendering"]
+include = ["src/**", "examples/**", "tests/**", "README.md", "README.zh-CN.md", "LICENSE", "CHANGELOG.md", "Cargo.toml", "Cargo.lock", "WINDOW-DEPENDENCIES.md", "JS-DEPENDENCIES.md", "FONT-DEPENDENCIES.md", "APPLICATIONS.md", "AGENTS.md", "REUSE-AUDIT.md", "CORE-DEPENDENCIES.md", "licenses/**", "COMPATIBILITY.md", "scripts/**", "tools/**"]
+
+[dependencies]
+cssparser = { version = "=0.38.0", default-features = false }
+html5ever = { version = "=0.40.1", default-features = false }
+serde_json = { version = "=1.0.154", optional = true }
+taffy = { version = "=0.15.0", default-features = false, features = ["std", "taffy_tree", "flexbox"] }
+png = { version = "=0.18.1", default-features = false }
+fontdue = { version = "=0.9.4", optional = true, default-features = false, features = ["std"] }
+boa_engine = { version = "=0.22.0", optional = true, default-features = false }
+
+[features]
+default = []
+fonts = ["dep:fontdue"]
+javascript = ["dep:boa_engine", "dep:serde_json"]
+window = ["dep:winit", "dep:softbuffer"]
+
+# Only the macOS host has been audited; other platform backends are disabled.
+[target.'cfg(target_os = "macos")'.dependencies]
+winit = { version = "=0.30.13", optional = true, default-features = false, features = ["rwh_06"] }
+softbuffer = { version = "=0.4.8", optional = true, default-features = false }
+
+[[bin]]
+name = "rwe-window"
+path = "src/bin/rwe-window.rs"
+required-features = ["window"]
+
+[lints.rust]
+unsafe_code = "forbid"
+missing_docs = "warn"
+
+[lints.clippy]
+all = "warn"
+
+[[bin]]
+name = "rwe-app-snapshots"
+path = "tools/app-snapshots.rs"
+required-features = ["javascript"]
+
+[[example]]
+name = "static-html"
+path = "examples/static-html/main.rs"
+required-features = ["window"]
+
+[[example]]
+name = "vue-counter"
+path = "examples/vue-counter/main.rs"
+required-features = ["window", "javascript"]
+
+[[example]]
+name = "vue-template"
+path = "examples/vue-template/main.rs"
+required-features = ["window", "javascript"]
+
+[[example]]
+name = "react-counter"
+path = "examples/react-counter/main.rs"
+required-features = ["window", "javascript"]
+
+[[example]]
+name = "embedded-vue"
+path = "examples/embedded-vue/main.rs"
+required-features = ["window", "javascript"]
+
+[[example]]
+name = "keyboard-buttons"
+path = "examples/keyboard-buttons/main.rs"
+required-features = ["window", "javascript"]
+
+[[example]]
+name = "text-input"
+path = "examples/text-input/main.rs"
+required-features = ["window", "javascript"]
+
+[[example]]
+name = "chinese-input"
+path = "examples/chinese-input/main.rs"
+required-features = ["window", "javascript", "fonts"]
+
+[[example]]
+name = "settings-form"
+path = "examples/settings-form/main.rs"
+required-features = ["window", "javascript", "fonts"]

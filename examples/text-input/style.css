@@ -1,0 +1,7 @@
+body { padding: 24px; background-color: #f3f6fa; }
+h1 { margin-bottom: 24px; color: #1e3a5f; }
+p { margin-bottom: 16px; }
+input { padding: 12px; margin-bottom: 16px; background-color: #fff; border: 1px solid #61758b; }
+#readonly { color: #778899; background-color: #e5eaf0; }
+#preview { padding: 16px; background-color: #dcebe4; }
+button { padding: 12px; margin-bottom: 16px; background-color: #fff; border: 1px solid #61758b; }

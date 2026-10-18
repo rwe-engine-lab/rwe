@@ -1,0 +1,15 @@
+body { padding: 24px; background-color: #f3f6fa; }
+h1 { margin-bottom: 20px; color: #1e3a5f; font-size: 24px; }
+label { margin-bottom: 6px; }
+input { margin-bottom: 12px; }
+#display-name { padding: 10px; background-color: #fff; border: 1px solid #61758b; }
+button { padding: 10px; margin-bottom: 12px; background-color: #fff; border: 1px solid #61758b; }
+p { margin-bottom: 12px; }
+#state { padding: 12px; background-color: #dcebe4; }
+#submitted { padding: 12px; background-color: #e3eaf6; }
+
+.choice { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; }
+.choice > input { flex-basis: 16px; flex-shrink: 0; margin-bottom: 0; }
+.choice > label { flex-basis: 0; flex-grow: 1; margin-bottom: 0; }
+.actions { display: flex; gap: 12px; }
+.actions > button { flex-basis: 180px; flex-grow: 1; }
